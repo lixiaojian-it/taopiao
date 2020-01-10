@@ -1,23 +1,30 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
-  </div>
+    <div id="app">
+        <router-view></router-view>
+
+        <Footer v-if="footerBar" />
+    </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
-  name: 'App'
-}
+    name: "App",
+    components: {
+        Footer: () => import("@/components/Footer")
+    },
+    computed: {
+        ...mapGetters({
+        footerBar: "getFooterBarState"
+        })
+    }
+};
 </script>
 
 <style>
+@import "./assets/css/base.less";
+@import "./assets/css/common.less";
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+
 }
 </style>
